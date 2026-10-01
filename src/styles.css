@@ -1,0 +1,530 @@
+/* আলিনুর স্বপ্নচারী — Lipighor free font (lipighor.com).
+   License: public/fonts/Lipighor-LiAlinurShowpnocari-Readme.txt
+   Web-font use needs permission from admin@lipighor.com. */
+@font-face {
+  font-family: "Li Alinur Showpnocari";
+  src: url("/fonts/LiAlinurShowpnocari-Normal.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Li Alinur Showpnocari";
+  src: url("/fonts/LiAlinurShowpnocari-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Li Alinur Showpnocari";
+  src: url("/fonts/LiAlinurShowpnocari-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Li Alinur Showpnocari";
+  src: url("/fonts/LiAlinurShowpnocari-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #07070d;
+  --panel: #0d0d16;
+  --line: rgba(255, 255, 255, 0.1);
+  --text: #f2f3f8;
+  --muted: #9298ad;
+  --accent: #7c5cff;
+  --accent2: #22d3ee;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Li Alinur Showpnocari", "Noto Sans Bengali", "Noto Sans", "FreeSans", system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+/* ---------------------------------------------------------- top bar */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 22px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(9, 9, 16, 0.9);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.brand__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 4px;
+  background: linear-gradient(140deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 18px var(--accent);
+  animation: brandPulse 2.6s ease-in-out infinite;
+}
+
+@keyframes brandPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 12px var(--accent); }
+  50% { transform: scale(1.25); box-shadow: 0 0 26px var(--accent); }
+}
+
+.brand small {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding-left: 8px;
+  border-left: 1px solid var(--line);
+}
+
+.topbar__spacer {
+  flex: 1;
+}
+
+.clock {
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  font-weight: 700;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 4px 11px;
+}
+
+.clock em {
+  font-style: normal;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.scene-tag {
+  font-size: 12.5px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 13px;
+}
+
+/* ---------------------------------------------------------- stage */
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  min-height: 0;
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgba(124, 92, 255, 0.09), transparent 70%),
+    #06060c;
+}
+
+.screen {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 18px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  background: #000;
+}
+
+.rec-badge {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(220, 38, 38, 0.92);
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.5);
+}
+
+.rec-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff;
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.25; }
+}
+
+/* ---------------------------------------------------------- deck */
+
+.deck {
+  border-top: 1px solid var(--line);
+  background: rgba(9, 9, 16, 0.94);
+  padding: 12px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 46vh;
+  overflow-y: auto;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 8px 15px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  min-width: 96px;
+}
+
+.btn--record {
+  background: linear-gradient(120deg, #ef4444, #f97316);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn--offline {
+  background: linear-gradient(120deg, #7c5cff, #22d3ee);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px rgba(124, 92, 255, 0.35);
+}
+
+.export__progress {
+  position: relative;
+  margin-top: 11px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.export__bar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(120deg, #7c5cff, #22d3ee);
+  transition: width 0.2s ease;
+}
+
+.export__pct {
+  position: relative;
+  display: block;
+  text-align: center;
+  line-height: 22px;
+  font-size: 11.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
+}
+
+.btn--link {
+  background: rgba(52, 211, 153, 0.16);
+  border-color: rgba(52, 211, 153, 0.5);
+  color: #6ee7b7;
+  font-weight: 700;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 13px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.seg__btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 13px;
+  cursor: pointer;
+}
+
+.seg__btn.is-on {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* scrubber */
+
+.scrub {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  cursor: pointer;
+}
+
+.scrub::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 12px var(--accent);
+  cursor: pointer;
+}
+
+.scrub::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 12px var(--accent);
+  cursor: pointer;
+}
+
+/* scene chips */
+
+.scenes {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.chip {
+  flex: 1 0 108px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--muted);
+  border-radius: 9px;
+  padding: 7px 11px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+
+.chip:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+}
+
+.chip.is-on {
+  color: #fff;
+  border-color: var(--chip, var(--accent));
+  background: color-mix(in srgb, var(--chip, var(--accent)) 20%, transparent);
+}
+
+/* export panel */
+
+.export {
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.025);
+  padding: 13px 15px;
+}
+
+.export__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.export__head strong {
+  font-size: 14px;
+}
+
+.export__fmt {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.export__body {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.field select {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 11px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.export__note {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.export__error {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: #fca5a5;
+}
+
+.deck__credit {
+  margin: 2px 0 0;
+  font-size: 11px;
+  text-align: right;
+  color: var(--muted);
+}
+
+.deck__credit a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: color 0.16s ease;
+}
+
+.deck__credit a:hover {
+  color: var(--text);
+}
+
+/* bare preview: canvas only, for clean frame capture */
+
+.app--bare {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.app--bare .topbar,
+.app--bare .deck {
+  display: none;
+}
+
+.app--bare .stage {
+  padding: 0;
+  background: #000;
+}
+
+.app--bare .screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------- responsive */
+
+@media (max-width: 720px) {
+  .brand small,
+  .scene-tag {
+    display: none;
+  }
+
+  .deck {
+    padding: 10px 14px 14px;
+  }
+
+  .stage {
+    padding: 10px;
+  }
+}

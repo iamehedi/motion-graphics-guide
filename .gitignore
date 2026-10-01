@@ -1,0 +1,28 @@
+# --- build output & deps ---------------------------------------------------
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# --- private / copyrighted media (keep the repo content-less) --------------
+# The engine runs fine without these; drop your own files back in public/ with
+# the same names to restore them. See docs/MOTION-GRAPHICS-GUIDE.md §7.
+public/voiceover.mp3
+public/app_icon.png
+public/screens/*.png
+public/audio/*.mp3
+
+# Voice-over source exports (ElevenLabs TTS) at the repo root
+ElevenLabs_*.mp3
+*.mp3
+
+# Source app captures & parked audio pack
+images/
+audio-pack/
+app_icon.png
+
+# Web fonts are licensed separately (see public/fonts/*-Readme.txt)
+public/fonts/*.ttf
+public/fonts/*.otf
+public/fonts/*.woff
+public/fonts/*.woff2
